@@ -1,18 +1,20 @@
+import { FC } from 'react'
 import styles from './components.module.css'
 
 type ButtonType = {
+    style: string
     name: string
-    disabled: boolean
+    disabled?: boolean
     callback: () => void
     value?: number
 }
 
-export const Button = (props: ButtonType) => {
+export const Button:FC<ButtonType> = ({style, name, disabled, callback}) => {
     const onclickHandler = () => {
-        props.callback()
+        callback()
     }
 
     return (
-        <button className={styles.button} onClick={onclickHandler} disabled={props.disabled}>{props.name}</button>
+        <button className={style} onClick={onclickHandler} disabled={disabled}>{name}</button>
     )
 }

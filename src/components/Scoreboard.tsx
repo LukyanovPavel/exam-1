@@ -1,12 +1,25 @@
+import {ChangeEvent, FC, useState} from 'react'
 import styles from './components.module.css'
 
 type ScoreBoard = {
+    title?: string
     value: number
-    error: boolean
+    callback?: (value: string) => void
 }
 
-export const ScoreBoard = (props: ScoreBoard) => {
+export const ScoreBoard: FC<ScoreBoard> = ({value, title, callback}) => {
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        callback && callback(e.currentTarget.value)
+    }
+
     return (
-        <input className={`${styles.score} ${props.error && styles.error}`} type="text" value={props.value} disabled={true}/>
+        <input
+            title={title}
+            className={styles.score}
+            type="text"
+            value={value}
+            onChange={onChangeHandler}
+        />
     )
 }
