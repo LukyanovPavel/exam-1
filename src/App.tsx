@@ -28,7 +28,7 @@ function App() {
 
     const incButton = () => {
         let currentValue = state.currentValue
-        if(state.currentValue < state.maxValue) {
+        if (state.currentValue < state.maxValue) {
             currentValue += 1
         }
         setState({...state, currentValue: currentValue})
@@ -38,15 +38,22 @@ function App() {
         setError(messageError)
     }
 
+    const resetButton = () => {
+        setState({...state, currentValue: state.startValue})
+    }
+
     return (
         <div className={style.wrap}>
             <SetCounter startValue={state.startValue}
                         maxValue={state.maxValue}
+                        currentValue={state.currentValue}
                         setButton={setButton}
             />
             <IncCounter startValue={state.startValue}
+                        maxValue={state.maxValue}
                         currentValue={state.currentValue}
                         incButton={incButton}
+                        resetButton={resetButton}
                         error={error}
                         updateError={updateError}
             />

@@ -26,17 +26,30 @@
     outline: none;
 }
 
-.button:disabled {
+.button_inc:disabled {
+    background-color: gray;
+}
+
+.button_set:disabled {
     background-color: gray;
 }
 
 .score {
     background-color: white;
+    color: grey;
     box-sizing: border-box;
     text-align: center;
     font-size: 50px;
     height: 100px;
     width: 200px;
+}
+
+.score_correct {
+    color: lightgreen;
+}
+
+.score_incorrect {
+    color: lightcoral;
 }
 
 .error {

@@ -5,9 +5,10 @@ type ScoreBoard = {
     title?: string
     value: number
     callback?: (value: string) => void
+    style?: string
 }
 
-export const ScoreBoard: FC<ScoreBoard> = ({value, title, callback}) => {
+export const ScoreBoard: FC<ScoreBoard> = ({value, title, callback, style}) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         callback && callback(e.currentTarget.value)
@@ -16,7 +17,7 @@ export const ScoreBoard: FC<ScoreBoard> = ({value, title, callback}) => {
     return (
         <input
             title={title}
-            className={styles.score}
+            className={styles.score + ' ' + style}
             type="text"
             value={value}
             onChange={onChangeHandler}

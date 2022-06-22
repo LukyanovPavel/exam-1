@@ -6,26 +6,31 @@ import {ScoreBoard} from './Scoreboard';
 
 type IncCounterType = {
     startValue: number
+    maxValue: number
     currentValue: number
     incButton: () => void
+    resetButton: () => void
     updateError: (errorMessage: string) => void
     error: string,
 }
 
-export const IncCounter: FC<IncCounterType> = ({startValue, currentValue, incButton, error}) => {
+export const IncCounter: FC<IncCounterType> = ({startValue, maxValue, currentValue, incButton, error, resetButton}) => {
 
     const incButtonHandler = () => {
         incButton()
     }
     const reset = () => {
-
+        resetButton()
     }
+
+    let style = currentValue < maxValue ? stylesComponents.score_correct : stylesComponents.score_incorrect
 
     return (
         <div>
             <div className={stylesApp.App}>
                 <ScoreBoard
                     value={currentValue}
+                    style={style}
                 />
 
                 <div>
@@ -33,12 +38,13 @@ export const IncCounter: FC<IncCounterType> = ({startValue, currentValue, incBut
                         style={stylesComponents.button_inc}
                         name={'inc'}
                         callback={incButtonHandler}
+                        disabled={currentValue === maxValue}
                     />
                     <Button
                         style={stylesComponents.button_inc}
                         name={'reset'}
                         callback={reset}
-                        //value={}
+                        disabled={startValue === currentValue}
                     />
                 </div>
             </div>
